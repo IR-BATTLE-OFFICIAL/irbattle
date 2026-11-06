@@ -1515,23 +1515,106 @@
             z-index: 2000;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         .modal-content {
-            background: #0C121E;
-            border: 1px solid var(--border-glow);
+            background: linear-gradient(145deg, #0E1628, #070B14);
+            border: 1px solid rgba(255, 183, 0, 0.35);
             border-radius: 28px;
-            padding: 40px;
-            max-width: 720px;
-            width: 90%;
+            padding: 36px 32px;
+            max-width: 760px;
+            width: 100%;
             max-height: 85vh;
             overflow-y: auto;
             position: relative;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 183, 0, 0.15);
+            scrollbar-width: thin;
+            scrollbar-color: #FFB700 rgba(255, 255, 255, 0.05);
+        }
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FFB700, #FF6F00);
+            border-radius: 8px;
+        }
+        .modal-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.45rem;
+            color: #FFF;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-content h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin: 22px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-content p {
+            color: var(--text-sub);
+            font-size: 0.93rem;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .modal-content ul {
+            margin: 8px 0 16px 20px;
+            color: var(--text-sub);
+            font-size: 0.92rem;
+            line-height: 1.75;
+        }
+        .modal-content li {
+            margin-bottom: 6px;
+        }
+        .modal-content .policy-badge {
+            display: inline-block;
+            background: rgba(255, 183, 0, 0.12);
+            border: 1px solid rgba(255, 183, 0, 0.3);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .modal-content .policy-highlight-box {
+            background: rgba(255, 183, 0, 0.06);
+            border-left: 3px solid var(--primary);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 16px 0;
+            color: #E2E8F0;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
         .modal-close {
             position: absolute;
-            top: 20px; right: 20px;
-            background: none; border: none;
-            color: #FFF; font-size: 1.6rem; cursor: pointer;
+            top: 20px; right: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            color: #FFF;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .modal-close:hover {
+            background: var(--gradient-gold);
+            color: #000;
+            border-color: #FFB700;
+            transform: scale(1.1);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -2578,12 +2661,130 @@
         }
     }
 
-    // Legal Modals
+    // Legal Modals Data
     const modalData = {
-        terms: `<h3>Terms & Conditions</h3><p>Welcome to IR BATTLE. By downloading or playing on our app, you agree to our fair gaming terms. Users must be 18+ or have parental consent. Teaming up or using hacks will result in an immediate account ban.</p>`,
-        privacy: `<h3>Privacy Policy</h3><p>Your privacy is important to us. We store basic user UID and payout details securely via Firebase authentication. We never sell your data to third parties.</p>`,
-        refund: `<h3>Refund & Cancellation Policy</h3><p>Deposits added to your IR BATTLE wallet are non-refundable. If a tournament is cancelled by admin, entry fees are 100% refunded to your wallet.</p>`,
-        contact: `<h3>Contact Support</h3><p>Need help with payouts or matches? Email us at <a href="mailto:support.irbattle@gmail.com" style="color:var(--primary);">support.irbattle@gmail.com</a> or join our official WhatsApp and Telegram channels!</p>`
+        terms: `
+            <span class="policy-badge"><i class="fas fa-file-contract"></i> Legal Agreement</span>
+            <h3>Terms & Conditions</h3>
+            <p>Welcome to <strong>IR BATTLE</strong>. By accessing our platform, downloading the application, or participating in tournaments, you legally agree to adhere to these Terms & Conditions. Please read them thoroughly.</p>
+
+            <div class="policy-highlight-box">
+                <i class="fas fa-shield-halved" style="color:var(--primary);margin-right:6px;"></i>
+                <strong>Skill-Based Gaming:</strong> Tournaments hosted on IR BATTLE are skill-based eSports competitions in compliance with the Public Gambling Act, 1867 and applicable state legislation in India.
+            </div>
+
+            <h4><i class="fas fa-user-check"></i> 1. User Eligibility</h4>
+            <ul>
+                <li>Participants must be at least 18 years of age or possess authorized parental/guardian consent.</li>
+                <li>Users must be residents of India. As per local state laws, users located in Assam, Odisha, Telangana, Andhra Pradesh, Nagaland, or Sikkim are restricted from playing paid cash tournaments.</li>
+                <li>Each player is permitted only ONE registered account. Multi-accounting, emulator spoofing, or account sharing is strictly prohibited.</li>
+            </ul>
+
+            <h4><i class="fas fa-gamepad"></i> 2. Fair Play & Tournament Rules</h4>
+            <ul>
+                <li><strong>Custom Room Access:</strong> Room ID and Password are sent via app notification 10–15 minutes before the match start time. Players must join with their exact registered Free Fire In-Game Name (IGN) and UID.</li>
+                <li><strong>Strict Anti-Cheat Policy:</strong> Any use of third-party mods, auto-aim scripts, speed hacks, texture hacks, or teaming with opponents in Solo matches results in an immediate permanent hardware/account ban and forfeiture of all wallet balance.</li>
+                <li><strong>Late Arrival:</strong> If a player fails to join the custom room before the match countdown ends, the match will proceed without them and entry fees are non-refundable.</li>
+            </ul>
+
+            <h4><i class="fas fa-wallet"></i> 3. Winnings & Withdrawals</h4>
+            <ul>
+                <li>Prize money is credited automatically to your in-app wallet upon admin screenshot verification after the match concludes.</li>
+                <li>Withdrawals are processed 24/7 directly to Indian UPI IDs (Google Pay, PhonePe, Paytm).</li>
+                <li>Valid KYC / mobile verification may be required for high-value withdrawals to comply with AML (Anti-Money Laundering) standards.</li>
+            </ul>
+
+            <h4><i class="fas fa-trademark"></i> 4. Disclaimer & Trademarks</h4>
+            <p>Free Fire is a registered trademark of Garena International. IR BATTLE is an independent skill-based community tournament platform and is neither endorsed by nor affiliated with Garena.</p>
+        `,
+
+        privacy: `
+            <span class="policy-badge"><i class="fas fa-user-shield"></i> User Privacy</span>
+            <h3>Privacy Policy</h3>
+            <p>At <strong>IR BATTLE</strong>, we value your trust and are fully committed to protecting your personal information. This Privacy Policy outlines what data we collect, how it is secured, and your rights as a user.</p>
+
+            <div class="policy-highlight-box">
+                <i class="fas fa-lock" style="color:var(--primary);margin-right:6px;"></i>
+                <strong>100% Privacy Guarantee:</strong> We never sell, rent, or trade your personal data, mobile numbers, or transaction details to any third-party advertisers.
+            </div>
+
+            <h4><i class="fas fa-database"></i> 1. Information We Collect</h4>
+            <ul>
+                <li><strong>Account Information:</strong> Name, Google Profile Display Picture, verified Email Address (via Google Authentication), and Mobile Number.</li>
+                <li><strong>Gaming Details:</strong> Free Fire In-Game Name (IGN) and Game UID for custom room verification and scoreboards.</li>
+                <li><strong>Financial & Payout Data:</strong> UPI ID (VPA) provided for processing withdrawal payouts. We do NOT store debit/credit card numbers or banking passwords.</li>
+                <li><strong>Technical Data:</strong> Device model, OS version, and IP address collected strictly for anti-fraud detection and multi-account prevention.</li>
+            </ul>
+
+            <h4><i class="fas fa-shield-cat"></i> 2. How We Use Your Data</h4>
+            <ul>
+                <li>To host competitive custom rooms and send Room ID & Password alerts.</li>
+                <li>To calculate kill points, Booyah rankings, and credit cash prizes.</li>
+                <li>To execute instant 24/7 UPI withdrawal requests to your linked account.</li>
+                <li>To investigate and prevent illegal hacks, scripts, and abusive behaviour.</li>
+            </ul>
+
+            <h4><i class="fas fa-server"></i> 3. Security & Cloud Storage</h4>
+            <p>All sensitive authentication credentials and tournament data are secured through <strong>Google Firebase Cloud Infrastructure</strong> using end-to-end 256-bit SSL encryption. Access to user records is strictly restricted to authorized administrative staff.</p>
+
+            <h4><i class="fas fa-user-gear"></i> 4. Data Deletion & Inquiries</h4>
+            <p>You have the full right to review, update, or request the permanent deletion of your account and related records. To submit a deletion request, email us at <a href="mailto:support.irbattle@gmail.com" style="color:var(--primary);font-weight:700;">support.irbattle@gmail.com</a>.</p>
+        `,
+
+        refund: `
+            <span class="policy-badge"><i class="fas fa-rotate-left"></i> Payment Terms</span>
+            <h3>Refund & Cancellation Policy</h3>
+            <p>We ensure transparent and fair financial policies for all tournament participants on <strong>IR BATTLE</strong>. Please review our refund criteria below.</p>
+
+            <div class="policy-highlight-box">
+                <i class="fas fa-circle-check" style="color:var(--success);margin-right:6px;"></i>
+                <strong>100% Match Cancellation Protection:</strong> If any match is cancelled by our admins due to game updates or room issues, your full entry fee is refunded instantly to your wallet.
+            </div>
+
+            <h4><i class="fas fa-calendar-xmark"></i> 1. Match Cancellation & Server Issues</h4>
+            <ul>
+                <li>If a tournament cannot take place due to Free Fire game server maintenance, technical custom room errors, or admin postponement, <strong>100% of the entry fee is automatically refunded</strong> to all registered players' in-app wallets within 15 minutes.</li>
+                <li>If a match is interrupted mid-game due to room glitches verified by the admin, the match will either be re-hosted or full entry fees will be refunded.</li>
+            </ul>
+
+            <h4><i class="fas fa-user-xmark"></i> 2. No-Show & Player Absence</h4>
+            <ul>
+                <li>Once a player successfully registers for a tournament, slot reservations are held exclusively for them.</li>
+                <li>If a player fails to join the room on time, enters the wrong custom room, or disconnects due to personal internet issues, <strong>no refund is granted</strong>.</li>
+            </ul>
+
+            <h4><i class="fas fa-ban"></i> 3. Disqualification & Cheating</h4>
+            <p>Any participant found guilty of using third-party mods, APK modifications, teamed gameplay in solo modes, or abusive chat will be permanently disqualified without any refund or wallet payout.</p>
+
+            <h4><i class="fas fa-money-bill-transfer"></i> 4. Wallet Balance & UPI Payouts</h4>
+            <ul>
+                <li>Winnings won through matches can be withdrawn to PhonePe, Paytm, or Google Pay via UPI at any time 24/7.</li>
+                <li>Deposit funds added specifically for tournament entry fees cannot be directly transferred back to bank accounts without match participation to comply with payment gateway & anti-money laundering regulations.</li>
+            </ul>
+        `,
+
+        contact: `
+            <span class="policy-badge"><i class="fas fa-headset"></i> 24/7 Help Desk</span>
+            <h3>Contact Support & Community</h3>
+            <p>Our dedicated support team and tournament moderators are available 24/7 to assist you with room credentials, scoring inquiries, wallet deposits, and instant UPI withdrawals.</p>
+
+            <div class="policy-highlight-box">
+                <i class="fas fa-bolt" style="color:var(--primary);margin-right:6px;"></i>
+                <strong>Fast Response Time:</strong> Most queries sent via WhatsApp or Telegram are resolved within 10 to 30 minutes!
+            </div>
+
+            <h4><i class="fas fa-envelope"></i> Official Channels</h4>
+            <ul>
+                <li><strong>Customer Support Email:</strong> <a href="mailto:support.irbattle@gmail.com" style="color:var(--primary);font-weight:700;">support.irbattle@gmail.com</a></li>
+                <li><strong>Official WhatsApp Channel:</strong> <a href="https://whatsapp.com/channel/0029VbCMxXV5Ejxq0XOsue0g" target="_blank" style="color:#25D366;font-weight:700;">Join WhatsApp Community <i class="fas fa-arrow-up-right-from-square" style="font-size:0.8rem;"></i></a></li>
+                <li><strong>Official Telegram Channel:</strong> <a href="https://t.me/ArenaBattleTVOfficial" target="_blank" style="color:#0088cc;font-weight:700;">@ArenaBattleTVOfficial <i class="fas fa-arrow-up-right-from-square" style="font-size:0.8rem;"></i></a></li>
+                <li><strong>Official YouTube:</strong> <a href="https://youtube.com/@ir_battle_official?si=uyZJP_A6ocn326Ks" target="_blank" style="color:#FF0000;font-weight:700;">@ir_battle_official <i class="fas fa-arrow-up-right-from-square" style="font-size:0.8rem;"></i></a></li>
+                <li><strong>Official Instagram:</strong> <a href="https://www.instagram.com/ir_battle_official?stkn=cTVmdmVsdzNpbTZv" target="_blank" style="color:#E1306C;font-weight:700;">@ir_battle_official <i class="fas fa-arrow-up-right-from-square" style="font-size:0.8rem;"></i></a></li>
+            </ul>
+
+            <h4><i class="fas fa-clock"></i> Support Working Hours</h4>
+            <p>Match room assistance and tournament dispute desks are open <strong>24 Hours / 7 Days a week</strong>. Email inquiries are typically answered within 1–2 business hours.</p>
+        `
     };
 
     function openModal(type) {
