@@ -922,20 +922,15 @@
             border-radius: 10px;
         }
 
-        /* 2-Column Split: Form + Reviews */
-        .reviews-grid-two-col {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 32px;
-            align-items: start;
-        }
-
-        /* Google Play Style Form Card */
+        /* Compact Centered Google Play Review Form */
         .review-form-card {
+            max-width: 560px;
+            margin: 0 auto;
+            width: 100%;
             background: linear-gradient(135deg, rgba(22, 28, 42, 0.95), rgba(12, 16, 26, 0.98));
             border: 1px solid var(--border-glow);
             border-radius: 28px;
-            padding: 28px;
+            padding: 28px 32px;
             box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
         }
         .form-header-title {
@@ -1011,7 +1006,7 @@
             color: #3c4043;
             border: none;
             border-radius: 14px;
-            padding: 12px 18px;
+            padding: 13px 18px;
             font-size: 0.92rem;
             font-weight: 700;
             display: flex;
@@ -1082,17 +1077,84 @@
             box-shadow: 0 0 35px rgba(255, 183, 0, 0.7);
         }
 
-        /* Play Store Style Review Cards */
-        .reviews-list-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* Horizontal Swipeable Reviews Carousel (Play Store Style, Does NOT stretch down!) */
+        .reviews-carousel-container {
+            margin-top: 10px;
+            position: relative;
         }
+        .carousel-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+        .carousel-title-txt {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .carousel-nav-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-scroll-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-scroll-arrow:hover {
+            background: var(--gradient-gold);
+            color: #000;
+            border-color: #FFB700;
+            transform: scale(1.08);
+        }
+
+        .reviews-horizontal-track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 4px 4px 18px 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #FFB700 rgba(255, 255, 255, 0.05);
+        }
+        .reviews-horizontal-track::-webkit-scrollbar {
+            height: 6px;
+        }
+        .reviews-horizontal-track::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .reviews-horizontal-track::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #FFB700, #FF9100);
+            border-radius: 10px;
+        }
+
         .review-card {
-            background: linear-gradient(135deg, rgba(22, 28, 42, 0.85), rgba(12, 16, 26, 0.9));
+            flex: 0 0 320px;
+            scroll-snap-align: start;
+            background: linear-gradient(135deg, rgba(22, 28, 42, 0.88), rgba(12, 16, 26, 0.92));
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 195px;
             transition: all 0.3s ease;
         }
         .review-card:hover {
@@ -1727,47 +1789,51 @@
             </div>
         </div>
 
-        <!-- 2-Col: Review Form + Live Reviews List -->
-        <div class="reviews-grid-two-col">
-            <!-- Review Form -->
-            <div class="review-form-card">
-                <h4 class="form-header-title">POST YOUR REVIEW</h4>
-                <p class="form-header-sub">Feedback is posted with your real Google account name & avatar</p>
+        <!-- Compact Centered Review Form (NO MANUAL NAME INPUT) -->
+        <div class="review-form-card">
+            <h4 class="form-header-title">LEAVE A PLAY STORE REVIEW</h4>
+            <p class="form-header-sub">Submit verified feedback with your real Google account name & profile avatar</p>
 
-                <!-- Google Auth State Container -->
-                <div id="googleAuthContainer">
-                    <button class="btn-google-signin" id="btnGoogleLogin" onclick="signInWithGoogle()">
-                        <svg viewBox="0 0 48 48">
-                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        </svg>
-                        <span>Sign in with Google</span>
-                    </button>
-                    <div style="text-align:center; margin-bottom: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.4);">
-                        — ya bina Google ke apna name daalein —
-                    </div>
-                    <input type="text" id="revName" class="form-input" placeholder="Your Full Name / Gamer Tag">
-                </div>
-
-                <div class="star-picker" id="starPicker">
-                    <i class="fas fa-star" data-val="1"></i>
-                    <i class="fas fa-star" data-val="2"></i>
-                    <i class="fas fa-star" data-val="3"></i>
-                    <i class="fas fa-star" data-val="4"></i>
-                    <i class="fas fa-star" data-val="5"></i>
-                </div>
-                <div class="star-rating-label" id="starRatingLabel">Tap stars to rate</div>
-
-                <textarea id="revComment" class="form-input" rows="3" placeholder="Share your tournament, gameplay & instant UPI withdrawal experience..."></textarea>
-                <button class="btn-submit-review" id="btnSubmitReview" onclick="submitReview()">
-                    <i class="fas fa-paper-plane" style="margin-right:6px;"></i> SUBMIT REVIEW
+            <!-- Google Auth State Container (Only Google Sign-in) -->
+            <div id="googleAuthContainer">
+                <button class="btn-google-signin" id="btnGoogleLogin" onclick="signInWithGoogle()">
+                    <svg viewBox="0 0 48 48">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                    </svg>
+                    <span>Sign in with Google to Review</span>
                 </button>
             </div>
 
-            <!-- Reviews List Grid -->
-            <div class="reviews-list-grid" id="reviewsWrapper">
+            <div class="star-picker" id="starPicker">
+                <i class="fas fa-star" data-val="1"></i>
+                <i class="fas fa-star" data-val="2"></i>
+                <i class="fas fa-star" data-val="3"></i>
+                <i class="fas fa-star" data-val="4"></i>
+                <i class="fas fa-star" data-val="5"></i>
+            </div>
+            <div class="star-rating-label" id="starRatingLabel">Tap stars to rate</div>
+
+            <textarea id="revComment" class="form-input" rows="3" placeholder="Share your tournament, gameplay & instant UPI withdrawal experience..."></textarea>
+            <button class="btn-submit-review" id="btnSubmitReview" onclick="submitReview()">
+                <i class="fas fa-paper-plane" style="margin-right:6px;"></i> SUBMIT REVIEW
+            </button>
+        </div>
+
+        <!-- Horizontal Swipeable Reviews Carousel (Play Store Style - Does NOT stretch down!) -->
+        <div class="reviews-carousel-container">
+            <div class="carousel-top-bar">
+                <div class="carousel-title-txt">
+                    <i class="fas fa-comments" style="color:#FFB700;"></i> Player Reviews (<span id="carouselCount">...</span>)
+                </div>
+                <div class="carousel-nav-btns">
+                    <button class="btn-scroll-arrow" onclick="scrollReviews(-1)" title="Previous"><i class="fas fa-chevron-left"></i></button>
+                    <button class="btn-scroll-arrow" onclick="scrollReviews(1)" title="Next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="reviews-horizontal-track" id="reviewsWrapper">
                 <!-- Dynamically populated from Firestore -->
             </div>
         </div>
@@ -1843,7 +1909,7 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
     import { getFirestore, doc, setDoc, increment, onSnapshot, collection, addDoc, serverTimestamp, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getAuth, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyDryf9Gtq0WpKObkZg9c1rD9geIrYDpLro",
@@ -1877,6 +1943,16 @@
         renderAuthUI();
     });
 
+    // Handle redirect result on page load (for mobile browsers)
+    getRedirectResult(auth).then((result) => {
+        if (result && result.user) {
+            currentGoogleUser = result.user;
+            renderAuthUI();
+        }
+    }).catch((err) => {
+        console.error("Redirect result error:", err);
+    });
+
     function renderAuthUI() {
         const container = document.getElementById('googleAuthContainer');
         if (!container) return;
@@ -1894,10 +1970,13 @@
                         <div class="g-user-name">${name}</div>
                         <div class="g-user-verified"><i class="fas fa-circle-check"></i> Google Account Verified (${email})</div>
                     </div>
-                    <button class="btn-g-signout" onclick="logoutGoogle()">Change</button>
+                    <button class="btn-g-signout" onclick="logoutGoogle()">Change Account</button>
                 </div>`;
         } else {
             container.innerHTML = `
+                <div style="text-align:center; margin-bottom: 8px; font-size: 0.82rem; color: rgba(255,255,255,0.55);">
+                    ⚠️ Review submit karne ke liye Google se Sign In karein
+                </div>
                 <button class="btn-google-signin" id="btnGoogleLogin" onclick="signInWithGoogle()">
                     <svg viewBox="0 0 48 48">
                         <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -1905,12 +1984,8 @@
                         <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
                         <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                     </svg>
-                    <span>Sign in with Google</span>
-                </button>
-                <div style="text-align:center; margin-bottom: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.4);">
-                    — ya bina Google ke apna name daalein —
-                </div>
-                <input type="text" id="revName" class="form-input" placeholder="Your Full Name / Gamer Tag">`;
+                    <span>Sign in with Google to Review</span>
+                </button>`;
         }
     }
 
@@ -1921,8 +1996,18 @@
             renderAuthUI();
         } catch (err) {
             console.error("Google Sign-In Error:", err);
-            if (err.code !== 'auth/popup-closed-by-user') {
-                alert("Google sign-in popup nahi khula. Kripya niche apna name type karke submit karein!");
+            if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+                // Mobile pe popup block hota hai — redirect use karo
+                try {
+                    await signInWithRedirect(auth, googleProvider);
+                } catch (redirectErr) {
+                    console.error("Redirect sign-in error:", redirectErr);
+                    alert("Google Sign-in nahi ho raha. Kripya Firebase Console mein ja ke Authentication > Settings > Authorized domains mein 'ir-battle-official.github.io' add karein.");
+                }
+            } else if (err.code === 'auth/unauthorized-domain') {
+                alert("⚠️ Domain authorized nahi hai!\n\nFix karne ke liye:\n1. Firebase Console kholein\n2. Authentication > Settings > Authorized domains\n3. 'ir-battle-official.github.io' add karein\n\nUske baad Google Sign-in kaam karega! ✅");
+            } else {
+                alert("Google Sign-in mein kuch issue hai. Please retry karein.");
             }
         }
     };
@@ -1981,13 +2066,18 @@
     });
 
     window.submitReview = async () => {
-        const nameInput = document.getElementById('revName');
-        const name = currentGoogleUser ? currentGoogleUser.displayName : (nameInput ? nameInput.value.trim() : '');
+        if (!currentGoogleUser) {
+            alert("⚠️ Review submit karne ke liye pehle Google se Sign In karein!\n\nUpar 'Sign in with Google to Review' button click karein.");
+            return;
+        }
+
+        const name = currentGoogleUser.displayName || 'Verified Gamer';
+        const photoURL = currentGoogleUser.photoURL || '';
+        const email = currentGoogleUser.email || '';
         const comment = document.getElementById('revComment').value.trim();
         const btn = document.getElementById('btnSubmitReview');
 
         if (currentRating === 0) { alert("Please select a star rating!"); return; }
-        if (!name) { alert("Kripya Google se sign in karein ya apna name dalein!"); return; }
         if (!comment) { alert("Kripya apna gameplay experience likhein!"); return; }
 
         btn.disabled = true;
@@ -1996,17 +2086,16 @@
         try {
             await addDoc(collection(db, "website_reviews"), {
                 name: name,
-                photoURL: currentGoogleUser ? (currentGoogleUser.photoURL || '') : '',
-                email: currentGoogleUser ? (currentGoogleUser.email || '') : '',
-                verified: !!currentGoogleUser,
+                photoURL: photoURL,
+                email: email,
+                verified: true,
                 rating: currentRating,
                 comment: comment,
                 helpfulCount: 1,
                 timestamp: serverTimestamp()
             });
-            alert("Dhanyawaad dost! Aapka Play Store review live publish ho gaya hai! ⭐");
+            alert("Dhanyawaad dost! Aapka review live publish ho gaya hai! ⭐");
             document.getElementById('revComment').value = "";
-            if (nameInput) nameInput.value = "";
             updateStarUI(5);
         } catch(e) {
             console.error("Submit review error:", e);
@@ -2024,6 +2113,14 @@
             countSpan.innerText = count;
             btn.style.color = '#FFB700';
             btn.disabled = true;
+        }
+    };
+
+    // Horizontal carousel scroll function
+    window.scrollReviews = (direction) => {
+        const wrapper = document.getElementById('reviewsWrapper');
+        if (wrapper) {
+            wrapper.scrollBy({ left: direction * 340, behavior: 'smooth' });
         }
     };
 
@@ -2260,7 +2357,10 @@
                     </div>
                 </div>`;
             });
-            wrap.innerHTML = html || '<p style="text-align:center;grid-column:1/-1;color:var(--text-sub);">No reviews yet. Be the first gamer to drop a review!</p>';
+            wrap.innerHTML = html || '<div style="text-align:center;padding:40px;color:var(--text-sub);">No reviews yet. Be the first gamer to drop a review! 🎮</div>';
+            // Update carousel count
+            const countEl = document.getElementById('carouselCount');
+            if (countEl) countEl.innerText = snap.size;
         });
     }
 
