@@ -2118,7 +2118,7 @@
 <!-- FIREBASE & JS SCRIPT -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getFirestore, doc, setDoc, increment, onSnapshot, collection, addDoc, serverTimestamp, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+    import { getFirestore, doc, setDoc, updateDoc, increment, onSnapshot, collection, addDoc, serverTimestamp, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
     import { getAuth, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
     const firebaseConfig = {
@@ -2301,7 +2301,7 @@
                 verified: true,
                 rating: currentRating,
                 comment: comment,
-                helpfulCount: 1,
+                helpfulCount: 0,
                 timestamp: serverTimestamp()
             });
             alert("Dhanyawaad dost! Aapka review live publish ho gaya hai! ⭐");
@@ -2316,24 +2316,52 @@
         }
     };
 
-    window.markHelpful = (btn) => {
+    window.markHelpful = async (docId, btn) => {
         const countSpan = btn.querySelector('.helpful-num');
         const icon = btn.querySelector('i');
         const isLiked = btn.classList.contains('liked');
 
+        let likedMap = {};
+        try {
+            likedMap = JSON.parse(localStorage.getItem('ir_liked_reviews') || '{}');
+        } catch(e) {}
+
         if (isLiked) {
-            // DISLIKE — remove like
+            // UNLIKE / DISLIKE
+            btn.classList.remove('liked');
+            if (icon) { icon.classList.remove('fas'); icon.classList.add('far'); }
             let count = parseInt(countSpan.innerText || '1') - 1;
             countSpan.innerText = Math.max(0, count);
-            if (icon) { icon.classList.remove('fas'); icon.classList.add('far'); }
-            btn.classList.remove('liked');
-            btn.disabled = false;
+            delete likedMap[docId];
+            localStorage.setItem('ir_liked_reviews', JSON.stringify(likedMap));
+
+            // Persist to real Firestore
+            if (docId) {
+                try {
+                    const reviewRef = doc(db, "website_reviews", docId);
+                    await updateDoc(reviewRef, { helpfulCount: increment(-1) });
+                } catch(err) {
+                    console.error("Firestore unlike err:", err);
+                }
+            }
         } else {
-            // LIKE — add like
+            // REAL LIKE
+            btn.classList.add('liked');
+            if (icon) { icon.classList.remove('far'); icon.classList.add('fas'); }
             let count = parseInt(countSpan.innerText || '0') + 1;
             countSpan.innerText = count;
-            if (icon) { icon.classList.remove('far'); icon.classList.add('fas'); }
-            btn.classList.add('liked');
+            likedMap[docId] = true;
+            localStorage.setItem('ir_liked_reviews', JSON.stringify(likedMap));
+
+            // Persist to real Firestore
+            if (docId) {
+                try {
+                    const reviewRef = doc(db, "website_reviews", docId);
+                    await updateDoc(reviewRef, { helpfulCount: increment(1) });
+                } catch(err) {
+                    console.error("Firestore like err:", err);
+                }
+            }
         }
     };
 
@@ -2552,7 +2580,11 @@
                 }
 
                 const verifiedBadge = r.verified !== false ? `<span class="ps-verified-pill"><i class="fas fa-circle-check"></i> Play Store Verified</span>` : ``;
-                const helpfulCount = r.helpfulCount || Math.floor(Math.random() * 8) + 4;
+                const docId = doc.id;
+                const helpfulCount = typeof r.helpfulCount === 'number' ? Math.max(0, r.helpfulCount) : 0;
+                let likedMap = {};
+                try { likedMap = JSON.parse(localStorage.getItem('ir_liked_reviews') || '{}'); } catch(e){}
+                const isLiked = !!likedMap[docId];
 
                 html += `
                 <div class="review-card">
@@ -2574,8 +2606,8 @@
                     <div class="review-comment-txt">"${r.comment}"</div>
                     <div class="review-footer-bar">
                         <span class="review-footer-label">👍 Helpful?</span>
-                        <button class="review-helpful-btn" onclick="markHelpful(this)">
-                            <i class="far fa-thumbs-up"></i> <span class="helpful-num">${helpfulCount}</span>
+                        <button class="review-helpful-btn ${isLiked ? 'liked' : ''}" onclick="markHelpful('${docId}', this)">
+                            <i class="${isLiked ? 'fas' : 'far'} fa-thumbs-up"></i> <span class="helpful-num">${helpfulCount}</span>
                         </button>
                     </div>
                 </div>`;
