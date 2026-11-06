@@ -1103,40 +1103,46 @@
             gap: 8px;
         }
         .btn-scroll-arrow {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #FFF;
+            background: rgba(255, 183, 0, 0.1);
+            border: 1.5px solid rgba(255, 183, 0, 0.3);
+            color: #FFB700;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
+            font-size: 0.9rem;
         }
         .btn-scroll-arrow:hover {
-            background: var(--gradient-gold);
+            background: linear-gradient(135deg, #FFB700, #FF6F00);
             color: #000;
             border-color: #FFB700;
-            transform: scale(1.08);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255,183,0,0.4);
+        }
+        .btn-scroll-arrow:active {
+            transform: scale(0.95);
         }
 
         .reviews-horizontal-track {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            padding: 4px 4px 18px 4px;
+            scroll-behavior: smooth;
+            padding: 6px 6px 20px 6px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
             scrollbar-color: #FFB700 rgba(255, 255, 255, 0.05);
         }
         .reviews-horizontal-track::-webkit-scrollbar {
-            height: 6px;
+            height: 5px;
         }
         .reviews-horizontal-track::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 10px;
         }
         .reviews-horizontal-track::-webkit-scrollbar-thumb {
@@ -1145,32 +1151,45 @@
         }
 
         .review-card {
-            flex: 0 0 320px;
+            flex: 0 0 300px;
             scroll-snap-align: start;
-            background: linear-gradient(135deg, rgba(22, 28, 42, 0.88), rgba(12, 16, 26, 0.92));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 20px 22px;
+            background: linear-gradient(145deg, rgba(26, 32, 50, 0.95), rgba(14, 18, 30, 0.98));
+            border: 1px solid rgba(255, 183, 0, 0.12);
+            border-radius: 18px;
+            padding: 18px 20px 14px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 195px;
-            transition: all 0.3s ease;
+            min-height: 210px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFB700, #FF6F00, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .review-card:hover {
-            border-color: rgba(255, 183, 0, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 183, 0, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
         }
+        .review-card:hover::before { opacity: 1; }
         .review-card-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 11px;
             margin-bottom: 10px;
         }
         .review-avatar-wrap {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
@@ -1180,8 +1199,9 @@
             justify-content: center;
             font-weight: 900;
             color: #000;
-            font-size: 1.1rem;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+            font-size: 1.15rem;
+            box-shadow: 0 3px 12px rgba(255,183,0,0.3);
+            border: 2px solid rgba(255,183,0,0.3);
         }
         .review-avatar-img {
             width: 100%;
@@ -1196,69 +1216,97 @@
         .review-author-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         .review-author-name {
             font-weight: 800;
             color: #FFF;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 130px;
         }
         .ps-verified-pill {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            background: rgba(0, 230, 118, 0.12);
+            gap: 3px;
+            background: rgba(0, 230, 118, 0.1);
             color: #00E676;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 230, 118, 0.25);
+            padding: 2px 7px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 230, 118, 0.2);
         }
         .review-date-stars {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 3px;
+            gap: 7px;
+            margin-top: 4px;
         }
         .review-stars-gold {
             color: #FFB700;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             letter-spacing: 1px;
         }
         .review-date-txt {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.75rem;
         }
         .review-comment-txt {
-            color: #E2E8F0;
-            font-size: 0.92rem;
-            line-height: 1.55;
-            margin: 8px 0 10px 0;
+            color: rgba(220, 230, 245, 0.88);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 8px 0 12px 0;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .review-footer-bar {
             display: flex;
             align-items: center;
-            gap: 16px;
-            color: rgba(255, 255, 255, 0.38);
-            font-size: 0.78rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 8px;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding-top: 10px;
+            margin-top: auto;
+        }
+        .review-footer-label {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.74rem;
         }
         .review-helpful-btn {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.5);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.55);
             font-size: 0.78rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 0;
-            transition: color 0.2s;
+            padding: 4px 12px;
+            transition: all 0.25s ease;
+            font-family: inherit;
         }
-        .review-helpful-btn:hover { color: #FFB700; }
+        .review-helpful-btn:hover {
+            background: rgba(255,183,0,0.12);
+            border-color: rgba(255,183,0,0.4);
+            color: #FFB700;
+            transform: scale(1.05);
+        }
+        .review-helpful-btn.liked {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.5);
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+        .review-helpful-btn.liked i {
+            color: #FFFFFF;
+        }
 
         /* ===== FAQ ACCORDION ===== */
         .faq-wrapper {
@@ -2107,20 +2155,30 @@
     };
 
     window.markHelpful = (btn) => {
+        if (btn.classList.contains('liked')) return; // already liked
         const countSpan = btn.querySelector('.helpful-num');
+        const icon = btn.querySelector('i');
         if (countSpan) {
             let count = parseInt(countSpan.innerText || '0') + 1;
             countSpan.innerText = count;
-            btn.style.color = '#FFB700';
-            btn.disabled = true;
         }
+        // Switch to solid thumbs-up icon
+        if (icon) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+        }
+        // Add liked state - turns white with solid background
+        btn.classList.add('liked');
+        btn.disabled = true;
     };
 
     // Horizontal carousel scroll function
     window.scrollReviews = (direction) => {
         const wrapper = document.getElementById('reviewsWrapper');
         if (wrapper) {
-            wrapper.scrollBy({ left: direction * 340, behavior: 'smooth' });
+            // Scroll by one card width + gap
+            const cardWidth = 314; // 300px card + 14px gap
+            wrapper.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
         }
     };
 
@@ -2350,9 +2408,9 @@
                     </div>
                     <div class="review-comment-txt">"${r.comment}"</div>
                     <div class="review-footer-bar">
-                        <span>Was this review helpful?</span>
+                        <span class="review-footer-label">👍 Helpful?</span>
                         <button class="review-helpful-btn" onclick="markHelpful(this)">
-                            <i class="far fa-thumbs-up"></i> Yes (<span class="helpful-num">${helpfulCount}</span>)
+                            <i class="far fa-thumbs-up"></i> <span class="helpful-num">${helpfulCount}</span>
                         </button>
                     </div>
                 </div>`;
