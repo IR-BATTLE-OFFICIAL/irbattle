@@ -1,0 +1,232 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Users
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isOwner(userId) || isAdmin() ||
+        (isSignedIn() &&
+          request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['balance', 'totalReferrals', 'referralEarnings', 'unreadNotifications', 'referralRewardClaimed', 'deviceId', 'playerCount', 'winningBalance', 'earnings']));
+      allow delete: if isAdmin();
+
+      // Nested AI Chat History
+      match /ai_messages/{messageId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // Pending Referrals (Refer & Earn system)
+    match /pending_referrals/{pendingId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() &&
+        (resource.data.referrerUid == request.auth.uid || resource.data.newUserId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // Tournaments
+    match /tournaments/{tournamentId} {
+      allow read: if isSignedIn();
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() ||
+        (isSignedIn() &&
+          request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly(['filledSlots', 'joinedCount']));
+
+      // Subcollection slots
+      match /slots/{slotId} {
+        allow read, write: if isSignedIn();
+      }
+    }
+
+    // Registrations
+    match /registrations/{regId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Slot Locks
+    match /slot_locks/{lockId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Transactions
+    match /transactions/{txId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Withdrawals
+    match /withdrawals/{withdrawalId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+        (request.resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // Redeem Code Requests (legacy or direct)
+    match /redeem_code_requests/{reqId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+        (request.resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // Deposit Requests
+    match /deposit_requests/{depositId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+        (request.resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // Bank Receipts (Auto UTR Verification)
+    match /bank_receipts/{receiptId} {
+      allow read: if isSignedIn();
+      allow update: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Results
+    match /results/{resultId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Banners
+    match /banners/{bannerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Vouchers
+    match /vouchers/{voucherId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Withdrawal Methods
+    match /withdrawal_methods/{methodId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // App Config / Settings
+    match /settings/{docId} {
+      allow read: if isSignedIn() || docId == 'app_config' || docId == 'app_theme';
+      allow write: if isAdmin();
+
+      // Website counters can be incremented without exposing other settings.
+      allow create: if docId == 'app_config' &&
+        request.resource.data.keys().hasOnly(['downloadCount', 'visitCount', 'playerCount']);
+      allow update: if docId == 'app_config' &&
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['downloadCount', 'visitCount', 'playerCount']);
+    }
+
+    match /app_config/{configId} {
+      allow read: if isSignedIn() || configId == 'app_config';
+      allow write: if isAdmin();
+    }
+
+    // Notifications
+    match /notifications/{notifId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() || isAdmin();
+      allow update, delete: if isAdmin() ||
+        (isSignedIn() && resource.data.userId == request.auth.uid);
+    }
+
+    // Admin Notifications
+    match /admin_notifications/{notifId} {
+      allow read: if isAdmin();
+      allow create: if isSignedIn() || isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // Support Tickets
+    match /support_tickets/{ticketId} {
+      allow read: if isSignedIn() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /support_tickets/{ticketId}/messages/{messageId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Reports
+    match /reports/{reportId} {
+      allow read: if isSignedIn() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Game Modes
+    match /game_modes/{modeId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Download Logs
+    match /download_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // AI Chat History
+    match /ai_chat/{userId}/messages/{messageId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // Leaderboard
+    match /leaderboard/{entryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Website Reviews
+    match /website_reviews/{reviewId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // Slots
+    match /tournament_slots/{slotId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin() ||
+        (isSignedIn() &&
+          request.resource.data.userId == request.auth.uid);
+    }
+  }
+}

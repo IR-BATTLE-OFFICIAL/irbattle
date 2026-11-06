@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ir-battle-official.github.io/ir-battle-001/sitemap.xml
