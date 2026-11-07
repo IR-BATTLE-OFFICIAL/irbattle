@@ -634,15 +634,15 @@
         /* ===== FEATURES GRID ===== */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
         .feature-card {
             background: linear-gradient(145deg, rgba(14,22,42,0.8) 0%, rgba(6,10,20,0.9) 100%);
             border: 1px solid rgba(255,183,0,0.12);
-            border-radius: 24px;
-            padding: 36px 30px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 18px;
+            padding: 20px 20px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
         }
@@ -650,47 +650,47 @@
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 24px;
+            border-radius: 18px;
             background: radial-gradient(circle at 30% 30%, rgba(255,183,0,0.06) 0%, transparent 65%);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.3s ease;
         }
         .feature-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-4px);
             border-color: rgba(255, 183, 0, 0.45);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 25px rgba(255,183,0,0.12);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 20px rgba(255,183,0,0.12);
         }
         .feature-card:hover::after { opacity: 1; }
         .feature-icon-glow {
-            width: 60px; height: 60px;
-            border-radius: 18px;
+            width: 44px; height: 44px;
+            border-radius: 12px;
             background: linear-gradient(135deg, rgba(255,183,0,0.15), rgba(255,100,0,0.08));
             border: 1px solid rgba(255,183,0,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.7rem;
+            font-size: 1.3rem;
             color: var(--primary);
-            margin-bottom: 22px;
-            box-shadow: 0 4px 20px rgba(255,183,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+            margin-bottom: 12px;
+            box-shadow: 0 3px 12px rgba(255,183,0,0.15);
             transition: all 0.3s ease;
         }
         .feature-card:hover .feature-icon-glow {
-            box-shadow: 0 6px 30px rgba(255,183,0,0.35);
-            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(255,183,0,0.35);
+            transform: scale(1.06);
         }
         .feature-card h4 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             color: #FFF;
             letter-spacing: 0.5px;
         }
         .feature-card p {
             color: var(--text-sub);
-            font-size: 0.93rem;
-            line-height: 1.72;
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
 
         /* ===== CALCULATOR PANEL ===== */
@@ -776,14 +776,14 @@
         /* ===== TOURNAMENT MODES ===== */
         .modes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 22px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
         }
         .mode-card {
             background: linear-gradient(145deg, rgba(14,22,42,0.85) 0%, rgba(6,10,20,0.92) 100%);
             border: 1px solid rgba(255, 183, 0, 0.14);
-            border-radius: 24px;
-            padding: 34px 22px;
+            border-radius: 18px;
+            padding: 20px 16px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
@@ -800,120 +800,120 @@
             transition: opacity 0.3s ease;
         }
         .mode-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: rgba(255, 183, 0, 0.5);
-            box-shadow: 0 16px 45px rgba(255, 183, 0, 0.18), 0 0 25px rgba(0,0,0,0.6);
+            box-shadow: 0 12px 35px rgba(255, 183, 0, 0.18), 0 0 20px rgba(0,0,0,0.6);
         }
         .mode-card:hover::before { opacity: 1; }
         .mode-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             display: inline-block;
             transition: transform 0.3s ease;
-            filter: drop-shadow(0 4px 12px rgba(255,183,0,0.3));
+            filter: drop-shadow(0 4px 10px rgba(255,183,0,0.3));
         }
         .mode-card:hover .mode-icon {
-            transform: scale(1.15) rotate(4deg);
+            transform: scale(1.12) rotate(4deg);
         }
         .mode-card h5 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #FFF;
             letter-spacing: 0.5px;
         }
         .mode-card p {
             color: var(--text-sub);
-            font-size: 0.88rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 0.82rem;
+            margin-bottom: 14px;
+            line-height: 1.45;
         }
         .mode-pill {
             display: inline-block;
             background: rgba(255, 183, 0, 0.12);
             border: 1px solid rgba(255, 183, 0, 0.35);
             color: var(--primary);
-            padding: 6px 18px;
+            padding: 5px 14px;
             border-radius: 50px;
-            font-size: 0.78rem;
+            font-size: 0.74rem;
             font-family: 'Rajdhani', sans-serif;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(255,183,0,0.15);
+            box-shadow: 0 0 12px rgba(255,183,0,0.15);
         }
 
         /* ===== HOW TO PLAY TIMELINE ===== */
         .timeline-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 16px;
             position: relative;
         }
         .timeline-item {
             background: linear-gradient(145deg, rgba(14,22,42,0.85) 0%, rgba(6,10,20,0.92) 100%);
             border: 1px solid rgba(255, 183, 0, 0.14);
-            border-radius: 24px;
-            padding: 34px 20px;
+            border-radius: 18px;
+            padding: 20px 14px;
             text-align: center;
             position: relative;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
         }
         .timeline-item:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: rgba(255, 183, 0, 0.5);
-            box-shadow: 0 16px 45px rgba(255, 183, 0, 0.16);
+            box-shadow: 0 12px 35px rgba(255, 183, 0, 0.16);
         }
         .timeline-number {
-            width: 58px; height: 58px;
+            width: 44px; height: 44px;
             background: linear-gradient(135deg, #FFE600 0%, #FF8C00 100%);
             color: #000;
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 22px;
-            box-shadow: 0 4px 25px rgba(255, 183, 0, 0.6), inset 0 2px 0 rgba(255,255,255,0.4);
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 18px rgba(255, 183, 0, 0.5), inset 0 2px 0 rgba(255,255,255,0.4);
             transition: transform 0.3s ease;
         }
         .timeline-item:hover .timeline-number {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
         .timeline-item h5 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.05rem;
+            font-size: 0.98rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             color: #FFF;
             letter-spacing: 0.5px;
         }
         .timeline-item p {
             color: var(--text-sub);
-            font-size: 0.88rem;
-            line-height: 1.65;
+            font-size: 0.82rem;
+            line-height: 1.45;
         }
 
         /* ===== GOOGLE PLAY STORE REVIEWS & RATINGS ===== */
         .reviews-section-container {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 24px;
         }
 
         /* Play Store Summary Card */
         .playstore-summary-card {
             background: linear-gradient(135deg, rgba(20, 26, 38, 0.95), rgba(10, 14, 22, 0.98));
             border: 1px solid rgba(255, 183, 0, 0.3);
-            border-radius: 28px;
-            padding: 32px 36px;
+            border-radius: 20px;
+            padding: 20px 28px;
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
+            grid-template-columns: 240px 1fr;
+            gap: 28px;
             align-items: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
@@ -935,23 +935,23 @@
             padding-right: 28px;
         }
         .ps-big-score {
-            font-size: 4.8rem;
+            font-size: 3.4rem;
             font-weight: 900;
             font-family: 'Orbitron', sans-serif;
             color: #FFF;
             line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: -2px;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
         }
         .ps-score-stars {
             color: #FFB700;
-            font-size: 1.25rem;
-            margin-bottom: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
             letter-spacing: 2px;
         }
         .ps-total-count {
             color: var(--text-sub);
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             font-weight: 600;
         }
         .ps-badge {
@@ -961,86 +961,86 @@
             background: rgba(0, 230, 118, 0.12);
             border: 1px solid rgba(0, 230, 118, 0.3);
             color: #00E676;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
         .ps-bars-col {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
         }
         .ps-bar-row {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.82rem;
+            gap: 10px;
+            font-size: 0.78rem;
             color: var(--text-sub);
         }
         .ps-bar-num {
-            width: 16px;
+            width: 14px;
             font-weight: 700;
             color: #FFF;
             text-align: right;
         }
         .ps-bar-track {
             flex: 1;
-            height: 10px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             position: relative;
         }
         .ps-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, #FFB700, #FF9100);
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         /* Compact Centered Google Play Review Form */
         .review-form-card {
-            max-width: 560px;
+            max-width: 520px;
             margin: 0 auto;
             width: 100%;
             background: linear-gradient(135deg, rgba(22, 28, 42, 0.95), rgba(12, 16, 26, 0.98));
             border: 1px solid var(--border-glow);
-            border-radius: 28px;
-            padding: 28px 32px;
+            border-radius: 20px;
+            padding: 20px 24px;
             box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
         }
         .form-header-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: #FFF;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             text-align: center;
         }
         .form-header-sub {
             color: var(--text-sub);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
         /* Google User Logged In Bar */
         .google-user-profile-bar {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: rgba(66, 133, 244, 0.12);
             border: 1px solid rgba(66, 133, 244, 0.35);
-            border-radius: 16px;
-            padding: 10px 14px;
-            margin-bottom: 16px;
+            border-radius: 14px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
         }
         .g-user-avatar {
-            width: 42px;
-            height: 42px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             border: 2px solid #4285F4;
             object-fit: cover;
@@ -1053,7 +1053,7 @@
         .g-user-name {
             font-weight: 800;
             color: #FFF;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -1063,17 +1063,17 @@
             align-items: center;
             gap: 4px;
             color: #4285F4;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
         }
         .btn-g-signout {
             background: none;
             border: none;
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             cursor: pointer;
             text-decoration: underline;
-            padding: 4px;
+            padding: 2px;
             flex-shrink: 0;
         }
         .btn-g-signout:hover { color: #FFF; }
@@ -1084,18 +1084,18 @@
             background: #FFF;
             color: #3c4043;
             border: none;
-            border-radius: 14px;
-            padding: 13px 18px;
-            font-size: 0.92rem;
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-size: 0.86rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             cursor: pointer;
             transition: all 0.25s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .btn-google-signin:hover {
             background: #f8f9fa;
@@ -1106,32 +1106,32 @@
 
         .star-picker {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
-            font-size: 2rem;
-            margin: 14px 0 4px 0;
+            font-size: 1.7rem;
+            margin: 8px 0 2px 0;
             color: rgba(255, 255, 255, 0.15);
         }
         .star-picker i { cursor: pointer; transition: all 0.2s ease; }
         .star-picker i.active { color: #FFB700; text-shadow: 0 0 15px rgba(255, 183, 0, 0.6); }
         .star-rating-label {
             text-align: center;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: #FFB700;
-            min-height: 18px;
-            margin-bottom: 12px;
+            min-height: 16px;
+            margin-bottom: 10px;
         }
 
         .form-input {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-glow);
-            border-radius: 14px;
-            padding: 12px 16px;
+            border-radius: 12px;
+            padding: 10px 14px;
             color: #FFF;
-            font-size: 0.92rem;
-            margin-bottom: 14px;
+            font-size: 0.86rem;
+            margin-bottom: 12px;
             outline: none;
             font-family: inherit;
         }
@@ -1142,18 +1142,18 @@
             background: var(--gradient-gold);
             color: #000;
             border: none;
-            padding: 14px;
+            padding: 11px 16px;
             border-radius: 100px;
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             cursor: pointer;
-            box-shadow: 0 0 25px rgba(255, 183, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 183, 0, 0.4);
             transition: all 0.3s ease;
         }
         .btn-submit-review:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 35px rgba(255, 183, 0, 0.7);
+            box-shadow: 0 0 30px rgba(255, 183, 0, 0.7);
         }
 
         /* Horizontal Swipeable Reviews Carousel (Play Store Style, Does NOT stretch down!) */
@@ -1230,18 +1230,18 @@
         }
 
         .review-card {
-            flex: 0 0 300px;
+            flex: 0 0 250px;
             scroll-snap-align: start;
             background: linear-gradient(145deg, rgba(26, 32, 50, 0.95), rgba(14, 18, 30, 0.98));
             border: 1px solid rgba(255, 183, 0, 0.12);
-            border-radius: 18px;
-            padding: 18px 20px 14px 20px;
+            border-radius: 14px;
+            padding: 12px 14px 10px 14px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 210px;
+            min-height: 135px;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
         }
@@ -1256,19 +1256,19 @@
         }
         .review-card:hover {
             border-color: rgba(255, 183, 0, 0.35);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
         .review-card:hover::before { opacity: 1; }
         .review-card-header {
             display: flex;
             align-items: center;
-            gap: 11px;
-            margin-bottom: 10px;
+            gap: 8px;
+            margin-bottom: 6px;
         }
         .review-avatar-wrap {
-            width: 44px;
-            height: 44px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
@@ -1278,9 +1278,9 @@
             justify-content: center;
             font-weight: 900;
             color: #000;
-            font-size: 1.15rem;
-            box-shadow: 0 3px 12px rgba(255,183,0,0.3);
-            border: 2px solid rgba(255,183,0,0.3);
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(255,183,0,0.3);
+            border: 1.5px solid rgba(255,183,0,0.3);
         }
         .review-avatar-img {
             width: 100%;
@@ -1295,53 +1295,53 @@
         .review-author-row {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             flex-wrap: wrap;
         }
         .review-author-name {
             font-weight: 800;
             color: #FFF;
-            font-size: 0.93rem;
+            font-size: 0.85rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 130px;
+            max-width: 110px;
         }
         .ps-verified-pill {
             display: inline-flex;
             align-items: center;
-            gap: 3px;
+            gap: 2px;
             background: rgba(0, 230, 118, 0.1);
             color: #00E676;
-            font-size: 0.68rem;
+            font-size: 0.62rem;
             font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 10px;
+            padding: 1px 5px;
+            border-radius: 8px;
             border: 1px solid rgba(0, 230, 118, 0.2);
         }
         .review-date-stars {
             display: flex;
             align-items: center;
-            gap: 7px;
-            margin-top: 4px;
+            gap: 5px;
+            margin-top: 2px;
         }
         .review-stars-gold {
             color: #FFB700;
-            font-size: 0.82rem;
-            letter-spacing: 1px;
+            font-size: 0.72rem;
+            letter-spacing: 0.5px;
         }
         .review-date-txt {
             color: rgba(255, 255, 255, 0.35);
-            font-size: 0.75rem;
+            font-size: 0.68rem;
         }
         .review-comment-txt {
             color: rgba(220, 230, 245, 0.88);
-            font-size: 0.88rem;
-            line-height: 1.6;
-            margin: 8px 0 12px 0;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            margin: 4px 0 8px 0;
             flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -1350,24 +1350,27 @@
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid rgba(255, 255, 255, 0.07);
-            padding-top: 10px;
+            padding-top: 6px;
             margin-top: auto;
         }
         .review-footer-label {
             color: rgba(255, 255, 255, 0.3);
-            font-size: 0.74rem;
+            font-size: 0.68rem;
         }
         .review-helpful-btn {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
+            border-radius: 16px;
             color: rgba(255, 255, 255, 0.55);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 4px 12px;
+            gap: 4px;
+            padding: 3px 8px;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
             transition: all 0.25s ease;
             font-family: inherit;
         }
@@ -1676,71 +1679,71 @@
             .stat-number { font-size: 1.35rem; margin-bottom: 2px; }
             .stat-label { font-size: 0.68rem; letter-spacing: 0.8px; }
 
-            section { padding: 36px 14px; }
-            .section-header { margin-bottom: 22px; }
-            .section-badge { padding: 4px 12px; font-size: 0.68rem; margin-bottom: 8px; letter-spacing: 1.5px; }
-            .section-title { font-size: 1.45rem; margin-bottom: 8px; }
-            .section-desc { font-size: 0.82rem; line-height: 1.5; }
+            section { padding: 24px 12px; }
+            .section-header { margin-bottom: 16px; }
+            .section-badge { padding: 3px 10px; font-size: 0.65rem; margin-bottom: 6px; letter-spacing: 1.2px; }
+            .section-title { font-size: 1.32rem; margin-bottom: 6px; }
+            .section-desc { font-size: 0.78rem; line-height: 1.45; }
 
-            .features-grid { grid-template-columns: 1fr; gap: 12px; }
-            .feature-card { padding: 18px 16px; border-radius: 16px; }
-            .feature-icon-glow { width: 44px; height: 44px; font-size: 1.25rem; border-radius: 12px; margin-bottom: 12px; }
-            .feature-card h4 { font-size: 1.02rem; margin-bottom: 6px; }
-            .feature-card p { font-size: 0.82rem; line-height: 1.55; }
+            .features-grid { grid-template-columns: 1fr; gap: 10px; }
+            .feature-card { padding: 14px 12px; border-radius: 14px; }
+            .feature-icon-glow { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 10px; margin-bottom: 8px; }
+            .feature-card h4 { font-size: 0.95rem; margin-bottom: 4px; }
+            .feature-card p { font-size: 0.78rem; line-height: 1.45; }
 
             /* Tournament Modes Grid - 2 Compact Columns on Mobile */
-            .modes-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .mode-card { padding: 16px 10px; border-radius: 16px; }
-            .mode-icon { font-size: 1.9rem; margin-bottom: 6px; }
-            .mode-card h5 { font-size: 0.88rem; margin-bottom: 4px; }
-            .mode-card p { font-size: 0.74rem; margin-bottom: 10px; line-height: 1.35; }
-            .mode-pill { padding: 3px 8px; font-size: 0.65rem; }
+            .modes-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .mode-card { padding: 12px 8px; border-radius: 12px; }
+            .mode-icon { font-size: 1.6rem; margin-bottom: 4px; }
+            .mode-card h5 { font-size: 0.82rem; margin-bottom: 3px; }
+            .mode-card p { font-size: 0.7rem; margin-bottom: 8px; line-height: 1.3; }
+            .mode-pill { padding: 2px 7px; font-size: 0.62rem; }
 
             /* Timeline Grid - 2 Compact Columns on Mobile */
-            .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .timeline-item { padding: 16px 10px; border-radius: 16px; }
-            .timeline-number { width: 36px; height: 36px; font-size: 0.95rem; margin-bottom: 10px; }
-            .timeline-item h5 { font-size: 0.88rem; margin-bottom: 4px; }
-            .timeline-item p { font-size: 0.74rem; line-height: 1.4; }
+            .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .timeline-item { padding: 12px 8px; border-radius: 12px; }
+            .timeline-number { width: 30px; height: 30px; font-size: 0.85rem; margin-bottom: 6px; }
+            .timeline-item h5 { font-size: 0.82rem; margin-bottom: 3px; }
+            .timeline-item p { font-size: 0.7rem; line-height: 1.3; }
 
-            .calc-panel { padding: 18px 14px; border-radius: 18px; }
-            .calc-body { gap: 16px; margin-top: 14px; }
-            .calc-display { padding: 18px 14px; border-radius: 16px; }
-            .calc-amount { font-size: 1.9rem; }
+            .calc-panel { padding: 16px 12px; border-radius: 16px; }
+            .calc-body { gap: 14px; margin-top: 12px; }
+            .calc-display { padding: 14px 12px; border-radius: 14px; }
+            .calc-amount { font-size: 1.7rem; }
 
             /* Play Store Summary Card Mobile */
-            .playstore-summary-card { padding: 16px 14px; gap: 14px; border-radius: 18px; }
-            .ps-big-score { font-size: 2.8rem; margin-bottom: 2px; }
-            .ps-score-stars { font-size: 0.82rem; }
-            .ps-total-count { font-size: 0.75rem; }
-            .ps-badge { font-size: 0.68rem; padding: 3px 8px; }
+            .playstore-summary-card { padding: 14px 12px; gap: 10px; border-radius: 14px; }
+            .ps-big-score { font-size: 2.3rem; margin-bottom: 2px; }
+            .ps-score-stars { font-size: 0.75rem; }
+            .ps-total-count { font-size: 0.72rem; }
+            .ps-badge { font-size: 0.64rem; padding: 2px 6px; }
             .ps-bar-row { gap: 6px; }
-            .ps-bar-num { font-size: 0.72rem; width: 10px; }
+            .ps-bar-num { font-size: 0.7rem; width: 10px; }
 
             /* Review Form Mobile */
-            .review-form-card { padding: 18px 14px; border-radius: 18px; }
-            .form-header-title { font-size: 0.98rem; }
-            .form-header-sub { font-size: 0.75rem; margin-bottom: 12px; }
-            .btn-google-signin { padding: 9px 14px; font-size: 0.82rem; }
-            .btn-submit-review { padding: 11px 16px; font-size: 0.84rem; }
+            .review-form-card { padding: 14px 12px; border-radius: 14px; }
+            .form-header-title { font-size: 0.92rem; }
+            .form-header-sub { font-size: 0.72rem; margin-bottom: 10px; }
+            .btn-google-signin { padding: 8px 12px; font-size: 0.78rem; margin-bottom: 10px; }
+            .btn-submit-review { padding: 9px 14px; font-size: 0.8rem; }
 
-            /* Horizontal Review Carousel Mobile */
-            .reviews-horizontal-track { gap: 10px; padding: 4px 2px 14px 2px; }
-            .review-card { flex: 0 0 250px; min-height: 165px; padding: 14px 14px 10px 14px; border-radius: 16px; }
-            .review-avatar-wrap { width: 34px; height: 34px; font-size: 0.95rem; }
-            .review-author-name { font-size: 0.84rem; max-width: 100px; }
-            .ps-verified-pill { font-size: 0.6rem; padding: 2px 5px; }
-            .review-stars-gold { font-size: 0.72rem; }
-            .review-date-txt { font-size: 0.68rem; }
-            .review-comment-txt { font-size: 0.8rem; line-height: 1.5; margin: 6px 0 8px 0; }
-            .review-footer-bar { padding-top: 6px; }
-            .review-footer-label { font-size: 0.68rem; }
-            .review-helpful-btn { font-size: 0.72rem; padding: 3px 8px; }
+            /* Horizontal Review Carousel Mobile - Ultra Compact Perfect Fit */
+            .reviews-horizontal-track { gap: 8px; padding: 2px 2px 10px 2px; }
+            .review-card { flex: 0 0 220px; min-height: 125px; padding: 10px 12px 8px 12px; border-radius: 12px; }
+            .review-avatar-wrap { width: 30px; height: 30px; font-size: 0.85rem; }
+            .review-author-name { font-size: 0.8rem; max-width: 95px; }
+            .ps-verified-pill { font-size: 0.58rem; padding: 1px 4px; }
+            .review-stars-gold { font-size: 0.68rem; }
+            .review-date-txt { font-size: 0.64rem; }
+            .review-comment-txt { font-size: 0.75rem; line-height: 1.35; margin: 4px 0 6px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+            .review-footer-bar { padding-top: 4px; }
+            .review-footer-label { font-size: 0.64rem; }
+            .review-helpful-btn { font-size: 0.68rem; padding: 2px 6px; }
 
             /* FAQ Mobile */
-            .faq-card { padding: 12px 14px; border-radius: 14px; }
-            .faq-head { font-size: 0.88rem; }
-            .faq-body { font-size: 0.8rem; }
+            .faq-card { padding: 10px 12px; border-radius: 12px; }
+            .faq-head { font-size: 0.84rem; }
+            .faq-body { font-size: 0.78rem; }
 
             /* Footer Mobile */
             footer { padding: 26px 14px 85px; }
@@ -1791,11 +1794,10 @@
     </a>
     <ul class="nav-links" id="navLinks">
         <li><a href="#features">Features</a></li>
-        <li><a href="#app-highlights">Highlights</a></li>
         <li><a href="#modes">Modes</a></li>
         <li><a href="#how-to-play">How to Play</a></li>
-        <li><a href="#faq">FAQ</a></li>
         <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li>
             <a href="#download" class="btn-nav-dl">
                 <i class="fas fa-download"></i> Download APK
@@ -1875,75 +1877,33 @@
     <div class="features-grid">
         <div class="feature-card">
             <div class="feature-icon-glow"><i class="fas fa-trophy"></i></div>
-            <h4>Daily Tournaments</h4>
-            <p>Solo, Duo, and Squad matches hosted every hour. Join matches with huge prize pools continuously.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon-glow"><i class="fas fa-bolt"></i></div>
-            <h4>Instant Withdrawals</h4>
-            <p>Win matches and get cash instantly transferred to your Google Pay, PhonePe, Paytm, or UPI ID.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon-glow"><i class="fas fa-shield-halved"></i></div>
-            <h4>Zero-Tolerance Anti-Cheat</h4>
-            <p>Strict server-side anti-cheat algorithms and live spectating guarantee 100% fair matches for everyone.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon-glow"><i class="fas fa-gift"></i></div>
-            <h4>Free Entry Matches</h4>
-            <p>Practice your skills and win real cash without paying any entry fees in special daily free matches.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon-glow"><i class="fas fa-users-line"></i></div>
-            <h4>Referral Rewards</h4>
-            <p>Invite your gaming squad and earn high commission bonuses directly in your wallet on every join.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon-glow"><i class="fas fa-headset"></i></div>
-            <h4>24/7 Live Support</h4>
-            <p>Get instant response and resolution via live chat, Telegram & WhatsApp support directly in the app.</p>
-        </div>
-    </div>
-</section>
-
-<!-- APP HIGHLIGHTS & ADVANCED FEATURES -->
-<section id="app-highlights">
-    <div class="section-header">
-        <div class="section-badge"><i class="fas fa-star"></i> App Highlights</div>
-        <h2 class="section-title">NEXT-GEN <span>ESPORTS EXPERIENCE</span></h2>
-        <p class="section-desc">Loaded with powerful features engineered for real competitive Free Fire players.</p>
-    </div>
-
-    <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        <div class="feature-card">
-            <div class="feature-icon-glow" style="color:var(--primary); background:rgba(255,183,0,0.1);"><i class="fas fa-cubes"></i></div>
-            <h4>Custom Room Lobby Slots</h4>
-            <p>Select your exact slot numbers (Solo, Duo A/B boxes, or Squad A/B/C/D boxes) just like official Free Fire tournaments.</p>
+            <h4>Daily & Free Tournaments</h4>
+            <p>Solo, Duo, and Squad matches hosted every hour with ₹0 entry & huge cash prize pools.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon-glow" style="color:var(--success); background:rgba(0,255,135,0.1);"><i class="fas fa-key"></i></div>
-            <h4>Auto Room ID & Pass</h4>
-            <p>Room Credentials are automatically released in-app exactly 15 minutes before match start time with one-tap copy buttons.</p>
+            <h4>Auto Room ID & Password</h4>
+            <p>Credentials automatically released in-app 15 mins before match start with 1-tap copy.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon-glow" style="color:var(--accent-cyan); background:rgba(0,240,255,0.1);"><i class="fas fa-robot"></i></div>
-            <h4>Built-in AI Assistant</h4>
-            <p>Smart AI Gaming Assistant inside the app to instantly solve your match queries, rules, and account questions 24/7.</p>
+            <div class="feature-icon-glow"><i class="fas fa-bolt"></i></div>
+            <h4>Instant 24x7 Withdrawals</h4>
+            <p>Win matches and get cash instantly to PhonePe, Google Pay, Paytm, or any UPI ID.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon-glow" style="color:var(--text-gold); background:rgba(255,230,0,0.1);"><i class="fas fa-wallet"></i></div>
-            <h4>Instant 24x7 Payouts</h4>
-            <p>Win matches and transfer funds instantly to PhonePe, Google Pay, Paytm, or any UPI ID with zero withdrawal charges.</p>
+            <div class="feature-icon-glow" style="color:var(--primary); background:rgba(255,183,0,0.1);"><i class="fas fa-cubes"></i></div>
+            <h4>Custom Lobby Slots</h4>
+            <p>Select exact slot numbers (Solo, Duo A/B, or Squad A/B/C/D) like official tournaments.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon-glow" style="color:#FF5500; background:rgba(255,85,0,0.1);"><i class="fas fa-shield-virus"></i></div>
-            <h4>100% Anti-Cheat Guarantee</h4>
-            <p>Advanced anti-hack protection, spectate verification, and player report system ensure 100% fair battlegrounds.</p>
+            <div class="feature-icon-glow"><i class="fas fa-shield-halved"></i></div>
+            <h4>100% Anti-Cheat System</h4>
+            <p>Strict server algorithms, live spectate & player report system guarantee 100% fair play.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon-glow" style="color:#9D00FF; background:rgba(157,0,255,0.1);"><i class="fas fa-chart-line"></i></div>
-            <h4>Live Match Results</h4>
-            <p>Transparent match kill logs, detailed tournament standings, and instant wallet balance credits right after match completion.</p>
+            <div class="feature-icon-glow"><i class="fas fa-headset"></i></div>
+            <h4>24/7 AI & Live Support</h4>
+            <p>Instant query resolution via in-app AI assistant, WhatsApp, and Telegram support.</p>
         </div>
     </div>
 </section>
